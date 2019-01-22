@@ -1,17 +1,18 @@
 #! /bin/sh
 
-service corosync start
-sleep 2
+corosync
+sleep 1
 corosync-cmapctl | grep members
 
-service pacemaker start
-crm configure property stonith-enabled=false
-crm configure property no-quorum-policy=ignore
-crm configure primitive FloatingIPAddress ocf:heartbeat:IPaddr2 params ip=172.16.0.150 op monitor interval=1s
+/usr/sbin/pacemakerd &
+pcs property set stonith-enabled=false
+pcs property set no-quorum-policy=ignore
+pcs resource create FloatingIP IPaddr2 ip=172.16.0.150
 
-service apache2 start
+/usr/sbin/httpd
 
 cp /hosts /etc/hosts
-service ssh start
+sleep 1
+/usr/sbin/sshd
 
-tail -f /var/log/apache2/access.log
+tail -f /var/log/httpd/access_log
