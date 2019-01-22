@@ -7,6 +7,8 @@ services:
     networks:
       cluster:
         ipv4_address: 172.16.0.100
+    volumes:
+      - ./disk_0:/dev/disk
     privileged: true
     tty: true
   node_1:
@@ -15,6 +17,8 @@ services:
     networks:
       cluster:
         ipv4_address: 172.16.0.101
+    volumes:
+      - ./disk_1:/dev/disk
     privileged: true
     tty: true
   node_2:
@@ -23,6 +27,8 @@ services:
     networks:
       cluster:
         ipv4_address: 172.16.0.102
+    volumes:
+      - ./disk_2:/dev/disk
     privileged: true
     tty: true
 
