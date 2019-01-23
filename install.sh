@@ -27,3 +27,5 @@ cp /vagrant/corosync.conf /etc/corosync/corosync.conf
 cp /vagrant/d0.res /etc/drbd.d/d0.res
 
 cp /vagrant/httpd.conf /etc/httpd/conf/httpd.conf
+
+cp /vagrant/*.sh ~
